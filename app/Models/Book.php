@@ -14,5 +14,23 @@ class Book extends Model
         'published_at'
     ];
 
+    /**
+     * Get the user that owns the Book
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
+    /**
+     * The roles that belong to the Book
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function authors()
+    {
+        return $this->belongsToMany(Author::class, 'author_book')->withPivot('is_active')->withTimestamps();;
+    }
 }

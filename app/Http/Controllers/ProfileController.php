@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+
+use function PHPUnit\Framework\isEmpty;
 
 class ProfileController extends Controller
 {
+
+    use ApiResponse;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $result = Profile::all();
+        if (isEmpty($result)) {
+            return $this->success_resposnes($result);
+        }
     }
 
     /**
@@ -25,7 +33,7 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
